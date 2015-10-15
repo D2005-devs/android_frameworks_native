@@ -35,7 +35,7 @@
 #include <private/gui/ComposerService.h>
 
 #ifdef QCOM_BSP
-#include <gralloc_priv.h>
+#include "../../../../hardware/qcom/display/msm8974/libgralloc/gralloc_priv.h"
 #endif
 
 namespace android {
@@ -807,6 +807,13 @@ static status_t copyBlt(
 }
 
 // ----------------------------------------------------------------------------
+
+enum {
+    /* gralloc usage bits indicating the type
+     * of allocation that should be used */
+    /* Buffer content should be displayed on an primary display only */
+    GRALLOC_USAGE_PRIVATE_INTERNAL_ONLY   =       0x04000000,
+};
 
 status_t Surface::lock(
         ANativeWindow_Buffer* outBuffer, ARect* inOutDirtyBounds)
